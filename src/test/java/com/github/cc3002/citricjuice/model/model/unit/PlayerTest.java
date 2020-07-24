@@ -1,5 +1,6 @@
-package com.github.cc3002.citricjuice.model;
+package com.github.cc3002.citricjuice.model.model.unit;
 
+import com.github.cc3002.citricliquid.model.unit.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,12 @@ public class PlayerTest {
 
   @BeforeEach
   public void setUp() {
-    suguri = new Player(PLAYER_NAME, 4, 1, -1, 2);
+    suguri = new Player(PLAYER_NAME, 4, 1, -1, 2 );
   }
 
   @Test
   public void constructorTest() {
-    final var expectedSuguri = new Player(PLAYER_NAME, 4, 1, -1, 2);
+    final var expectedSuguri = new Player(PLAYER_NAME, 4, 1, -1, 2 );
     assertEquals(expectedSuguri, suguri);
   }
 
@@ -35,7 +36,7 @@ public class PlayerTest {
     final var o = new Object();
     assertNotEquals(suguri, o);
     assertEquals(suguri, suguri);
-    final var expectedSuguri = new Player(PLAYER_NAME, 4, 1, -1, 2);
+    final var expectedSuguri = new Player(PLAYER_NAME, 4, 1, -1, 2 );
     assertEquals(expectedSuguri, suguri);
   }
 
@@ -51,6 +52,46 @@ public class PlayerTest {
   }
 
   @Test
+  public void starsTest(){
+    assertEquals(0, suguri.getStars());
+    suguri.increaseStarsBy(2);
+    assertEquals(2, suguri.getStars());
+    suguri.reduceStarsBy(3);
+    assertEquals(0, suguri.getStars());
+    suguri.increaseStarsBy(5);
+    assertEquals(5, suguri.getStars());
+  }
+
+  @Test
+  public void AtkTest(){
+    assertEquals(1,suguri.getAtk());
+    suguri.setAtk(2);
+    assertEquals(2,suguri.getAtk());
+    suguri.setAtk(-5);
+    assertEquals(-5,suguri.getAtk());
+
+  }
+
+  @Test
+  public void DefTest(){
+    assertEquals(-1,suguri.getDef());
+    suguri.setDef(2);
+    assertEquals(2,suguri.getDef());
+    suguri.setDef(-5);
+    assertEquals(-5,suguri.getDef());
+
+  }
+
+  @Test
+  public void EvdTest() {
+    assertEquals(2, suguri.getEvd());
+    suguri.setEvd(2);
+    assertEquals(2, suguri.getEvd());
+    suguri.setEvd(-5);
+    assertEquals(-5, suguri.getEvd());
+  }
+
+  @Test
   public void normaClearTest() {
     suguri.normaClear();
     assertEquals(2, suguri.getNormaLevel());
@@ -58,7 +99,7 @@ public class PlayerTest {
 
   @Test
   public void copyTest() {
-    final var expectedSuguri = new Player(PLAYER_NAME, 4, 1, -1, 2);
+    final var expectedSuguri = new Player(PLAYER_NAME, 4, 1, -1, 2 );
     final var actualSuguri = suguri.copy();
     // Checks that the copied player have the same parameters as the original
     assertEquals(expectedSuguri, actualSuguri);
@@ -102,6 +143,16 @@ public class PlayerTest {
     assertTrue(roll >= 1 && roll <= 6,
                roll + "is not in [1, 6]" + System.lineSeparator()
                + "Test failed with random seed: " + testSeed);
+  }
+
+  @Test
+  public void NormaGoalTest(){
+    throw new AssertionError("POR IMPLEMENTAR");
+  }
+
+  @Test
+  public void setHomeTest(){
+    throw new AssertionError("POR IMPLEMENTAR");
   }
   // endregion
 }
